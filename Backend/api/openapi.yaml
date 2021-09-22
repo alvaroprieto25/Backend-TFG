@@ -1,0 +1,1438 @@
+openapi: 3.0.0
+info:
+  title: Backend
+  version: v1
+servers:
+- url: https://localhost:8080/
+  description: SwaggerHub API Auto Mocking
+paths:
+  /proyect/add:
+    post:
+      tags:
+      - Project
+      summary: Add a new project to db
+      operationId: addProject
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "405":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Project
+  /project/{id}:
+    get:
+      tags:
+      - Project
+      summary: Gets a project from db
+      operationId: getProject
+      parameters:
+      - name: id
+        in: path
+        description: id of the project
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Project
+    put:
+      tags:
+      - Project
+      summary: Update a project
+      operationId: updateProject
+      parameters:
+      - name: id
+        in: path
+        description: id of the project
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Proejct not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "405":
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Project
+    delete:
+      tags:
+      - Project
+      summary: Delete a project from db
+      operationId: deleteProject
+      parameters:
+      - name: id
+        in: path
+        description: id of the project
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Project not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Project
+  /project/{id}/getClient:
+    get:
+      tags:
+      - Project
+      summary: Gets the client of a project
+      operationId: getProjectClient
+      parameters:
+      - name: id
+        in: path
+        description: id of the project
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Project
+  /project/{id}/getBusiness:
+    get:
+      tags:
+      - Project
+      summary: Gets the business of a project
+      operationId: getProjectBusiness
+      parameters:
+      - name: id
+        in: path
+        description: id of the project
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Project
+  /budget/add:
+    post:
+      tags:
+      - Budget
+      summary: Add a new Budget to db
+      operationId: addBudget
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Budget'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "405":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Budget
+  /budget/{id}:
+    get:
+      tags:
+      - Budget
+      summary: Gets a Budget from db
+      operationId: getBudget
+      parameters:
+      - name: id
+        in: path
+        description: id of the Budget
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_3'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_3'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Budget
+    put:
+      tags:
+      - Budget
+      summary: Update a Budget
+      operationId: updateBudget
+      parameters:
+      - name: id
+        in: path
+        description: id of the Budget
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Budget'
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Budget not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "405":
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Budget
+    delete:
+      tags:
+      - Budget
+      summary: Delete a Budget from db
+      operationId: deleteBudget
+      parameters:
+      - name: id
+        in: path
+        description: id of the Budget
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Budget not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Budget
+  /budget/{id}/getProject:
+    get:
+      tags:
+      - Budget
+      summary: Gets the project of a budget
+      operationId: getBudgetProject
+      parameters:
+      - name: id
+        in: path
+        description: id of the Budget
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Budget
+  /budget/{id}/getClient:
+    get:
+      tags:
+      - Budget
+      summary: Gets the client of a budget
+      operationId: getBudgetClient
+      parameters:
+      - name: id
+        in: path
+        description: id of the Budget
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Budget
+  /client/add:
+    post:
+      tags:
+      - Client
+      summary: Add a new client to db
+      operationId: addClient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "405":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Client
+  /client/{id}:
+    get:
+      tags:
+      - Client
+      summary: Gets a Client from db
+      operationId: getClient
+      parameters:
+      - name: id
+        in: path
+        description: id of the Client
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Client
+    put:
+      tags:
+      - Client
+      summary: Update a Client
+      operationId: updateClient
+      parameters:
+      - name: id
+        in: path
+        description: id of the Client
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Client not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "405":
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Client
+    delete:
+      tags:
+      - Client
+      summary: Delete a Client from db
+      operationId: deleteClient
+      parameters:
+      - name: id
+        in: path
+        description: id of the Client
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Client not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Client
+  /client/{id}/getProjects:
+    get:
+      tags:
+      - Client
+      summary: Gets all the projects of a client
+      operationId: getClientProjects
+      parameters:
+      - name: id
+        in: path
+        description: id of the Client
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_4'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_4'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Client
+  /client/{id}/getBudgets:
+    get:
+      tags:
+      - Client
+      summary: Gets all the budgets of a client
+      operationId: getClientBudgets
+      parameters:
+      - name: id
+        in: path
+        description: id of the Client
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_5'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_5'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Client
+  /business/add:
+    post:
+      tags:
+      - Business
+      summary: Add a new business to db
+      operationId: addBusiness
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Business'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "405":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Business
+  /business/{id}:
+    get:
+      tags:
+      - Business
+      summary: Gets a Business from db
+      operationId: getBusiness
+      parameters:
+      - name: id
+        in: path
+        description: id of the business
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Business
+    put:
+      tags:
+      - Business
+      summary: Update a Business
+      operationId: updateBusiness
+      parameters:
+      - name: id
+        in: path
+        description: id of the business
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Business'
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Business not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "405":
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Business
+    delete:
+      tags:
+      - Business
+      summary: Delete a business from db
+      operationId: deleteBusiness
+      parameters:
+      - name: id
+        in: path
+        description: id of the business
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Business not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Business
+  /business/{id}/getToken:
+    get:
+      tags:
+      - Business
+      summary: Gets the token of a business
+      operationId: getBusinessToken
+      parameters:
+      - name: id
+        in: path
+        description: id of the business
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_6'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_6'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Business
+  /business/{id}/getStyle:
+    get:
+      tags:
+      - Business
+      summary: Gets the style of a business
+      operationId: getBusinessStyle
+      parameters:
+      - name: id
+        in: path
+        description: id of the business
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_7'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_7'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Business
+  /business/{id}/getClients:
+    get:
+      tags:
+      - Business
+      summary: Gets the clients of a business
+      operationId: getBusinessClients
+      parameters:
+      - name: id
+        in: path
+        description: id of the business
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_8'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_8'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Business
+  /business/{id}/getProjects:
+    get:
+      tags:
+      - Business
+      summary: Gets the projects of a business
+      operationId: getBusinessProjects
+      parameters:
+      - name: id
+        in: path
+        description: id of the business
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_4'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_4'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Business
+  /token/add:
+    post:
+      tags:
+      - Token
+      summary: Add a new token to db
+      operationId: addToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Token'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "405":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Token
+  /token/{id}:
+    get:
+      tags:
+      - Token
+      summary: Gets a Token from db
+      operationId: getToken
+      parameters:
+      - name: id
+        in: path
+        description: id of the token
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_6'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_6'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Token
+    put:
+      tags:
+      - Token
+      summary: Update a Token
+      operationId: updateToken
+      parameters:
+      - name: id
+        in: path
+        description: id of the token
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Token'
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Token not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "405":
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Token
+    delete:
+      tags:
+      - Token
+      summary: Delete a token from db
+      operationId: deleteToken
+      parameters:
+      - name: id
+        in: path
+        description: id of the token
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Token not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Token
+  /style/add:
+    post:
+      tags:
+      - Style
+      summary: Add a new style to db
+      operationId: addStyle
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Style'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "405":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Style
+  /style/{id}:
+    get:
+      tags:
+      - Style
+      summary: Gets a Style from db
+      operationId: getStyle
+      parameters:
+      - name: id
+        in: path
+        description: id of the style
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_7'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_7'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Style
+    put:
+      tags:
+      - Style
+      summary: Update a Style
+      operationId: updateStyle
+      parameters:
+      - name: id
+        in: path
+        description: id of the style
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Style'
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Style not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "405":
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Style
+    delete:
+      tags:
+      - Style
+      summary: Delete a style from db
+      operationId: deleteStyle
+      parameters:
+      - name: id
+        in: path
+        description: id of the style
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Style not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Style
+components:
+  schemas:
+    AllProjects:
+      type: array
+      items:
+        $ref: '#/components/schemas/Project'
+    AllClients:
+      type: array
+      items:
+        $ref: '#/components/schemas/Client'
+    AllBudgets:
+      type: array
+      items:
+        $ref: '#/components/schemas/Budget'
+    Response:
+      type: object
+      properties:
+        correcto:
+          type: boolean
+        error:
+          type: string
+      example:
+        correcto: true
+        error: error
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        date:
+          type: string
+        orientation:
+          type: string
+        surface:
+          type: number
+        panels:
+          type: number
+        population:
+          type: string
+        adress:
+          type: string
+    Budget:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        price:
+          type: number
+        date:
+          type: string
+    Client:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        dni:
+          type: string
+        name:
+          type: string
+        surname:
+          type: string
+        email:
+          type: string
+        phone:
+          type: integer
+          format: int64
+    Business:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        cif:
+          type: string
+        phone:
+          type: integer
+          format: int64
+        population:
+          type: string
+        adress:
+          type: string
+        email:
+          type: string
+    Token:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        initiation:
+          type: string
+        expiration:
+          type: string
+    Style:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        logo:
+          type: string
+        primary:
+          type: string
+        secondary:
+          type: string
+        terciary:
+          type: string
+        font:
+          type: string
+    inline_response_200:
+      allOf:
+      - $ref: '#/components/schemas/Project'
+      - $ref: '#/components/schemas/Response'
+    inline_response_200_1:
+      allOf:
+      - $ref: '#/components/schemas/Client'
+      - $ref: '#/components/schemas/Response'
+    inline_response_200_2:
+      allOf:
+      - $ref: '#/components/schemas/Business'
+      - $ref: '#/components/schemas/Response'
+    inline_response_200_3:
+      allOf:
+      - $ref: '#/components/schemas/Budget'
+      - $ref: '#/components/schemas/Response'
+    inline_response_200_4:
+      allOf:
+      - properties:
+          projects:
+            $ref: '#/components/schemas/AllProjects'
+      - $ref: '#/components/schemas/Response'
+    inline_response_200_5:
+      allOf:
+      - properties:
+          budgets:
+            $ref: '#/components/schemas/AllBudgets'
+      - $ref: '#/components/schemas/Response'
+    inline_response_200_6:
+      allOf:
+      - $ref: '#/components/schemas/Token'
+      - $ref: '#/components/schemas/Response'
+    inline_response_200_7:
+      allOf:
+      - $ref: '#/components/schemas/Style'
+      - $ref: '#/components/schemas/Response'
+    inline_response_200_8:
+      allOf:
+      - properties:
+          clients:
+            $ref: '#/components/schemas/AllClients'
+      - $ref: '#/components/schemas/Response'
