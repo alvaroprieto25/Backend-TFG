@@ -5,6 +5,7 @@ var http = require('http');
 
 var oas3Tools = require('oas3-tools');
 var serverPort = 8080;
+
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
@@ -14,6 +15,8 @@ var con = mysql.createConnection({
     database: "tfg"
 });
   
+module.exports = con;
+
 con.connect(function(err) {
     if (err) throw err;
     console.log("Database connected!");
@@ -35,5 +38,5 @@ http.createServer(app).listen(serverPort, function () {
     console.log('Swagger-ui is available on http://localhost:%d/docs', serverPort);
 });
 
-module.exports = con;
+
 

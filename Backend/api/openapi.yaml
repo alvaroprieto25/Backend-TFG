@@ -6,7 +6,7 @@ servers:
 - url: https://localhost:8080/
   description: SwaggerHub API Auto Mocking
 paths:
-  /proyect/add:
+  /project/add:
     post:
       tags:
       - Project
