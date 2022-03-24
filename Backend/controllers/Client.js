@@ -23,6 +23,16 @@ module.exports.deleteClient = function deleteClient (req, res, next, id) {
     });
 };
 
+module.exports.getAllCLients = function getAllCLients (req, res, next) {
+  Client.getAllCLients()
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.getClient = function getClient (req, res, next, id) {
   Client.getClient(id)
     .then(function (response) {

@@ -33,6 +33,16 @@ module.exports.getProject = function getProject (req, res, next, id) {
     });
 };
 
+module.exports.getProjectBudget = function getProjectBudget (req, res, next, id) {
+  Project.getProjectBudget(id)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.getProjectBusiness = function getProjectBusiness (req, res, next, id) {
   Project.getProjectBusiness(id)
     .then(function (response) {

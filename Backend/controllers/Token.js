@@ -33,6 +33,16 @@ module.exports.getToken = function getToken (req, res, next, id) {
     });
 };
 
+module.exports.getTokenBusiness = function getTokenBusiness (req, res, next, id) {
+  Token.getTokenBusiness(id)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.updateToken = function updateToken (req, res, next, body, id) {
   Token.updateToken(body, id)
     .then(function (response) {

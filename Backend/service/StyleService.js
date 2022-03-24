@@ -15,7 +15,6 @@ const con = require('../index');
 
     con.query(sql, body, function (err, result) {
       if (err) {
-        console.log(err);
         res['application/json'] = {
           "correcto" : false,
           "error" : err

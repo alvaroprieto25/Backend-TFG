@@ -125,6 +125,61 @@ const con = require('../index');
   });
 }
 
+/**
+ * Gets the business of a budget
+ *
+ * id Long id of the Token
+ * returns inline_response_200_2
+ **/
+ exports.getTokenBusiness = function(id) {
+  return new Promise(function(resolve, reject) {
+    var res = {};
+    var sql = "SELECT * FROM token WHERE id = '" + id + "'";
+
+    con.query(sql, function (err, result) { 
+      if(err)
+        res['application/json'] = {
+          "correcto" : false,
+          "error" : err
+        };
+      else{
+        var sql2 = "SELECT * FROM business WHERE tokenId = '" + result[0].tokenId + "'";
+        con.query(sql2, async function (err2, result2) {
+          if(err2)
+            res['application/json'] = {
+              "correcto" : false,
+              "error" : "business not found"
+            };
+          else{
+            res['application/json'] = {
+              "id": result2[0].id,
+              "name": result2[0].name,
+              "phone": result2[0].phone,
+              "poblation": result2[0].poblation,
+              "adress": result2[0].adress,
+              "email": result2[0].email,
+              "password": result2[0].password,
+              "pricePanel": result2[0].pricePanel,
+              "priceInstallation": result2[0].priceInstallation,
+              "capacityPanel": result2[0].capacityPanel,
+              "tokenId": result2[0].tokenId,
+              "styleId": result2[0].styleId,
+              "correcto" : true,
+              "error" : ""
+            };
+          }
+          await sleep(1000);
+          if (Object.keys(res).length > 0) {
+            resolve(res[Object.keys(res)[0]]);
+          } else {
+            resolve();
+          }
+        });
+      }
+    });
+  });
+}
+
 
 /**
  * Update a Token
@@ -167,6 +222,12 @@ const con = require('../index');
       }
 
     });
+  });
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
   });
 }
 

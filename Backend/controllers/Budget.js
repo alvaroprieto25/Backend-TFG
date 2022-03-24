@@ -33,6 +33,16 @@ module.exports.getBudget = function getBudget (req, res, next, id) {
     });
 };
 
+module.exports.getBudgetBusiness = function getBudgetBusiness (req, res, next, id) {
+  Budget.getBudgetBusiness(id)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.getBudgetClient = function getBudgetClient (req, res, next, id) {
   Budget.getBudgetClient(id)
     .then(function (response) {

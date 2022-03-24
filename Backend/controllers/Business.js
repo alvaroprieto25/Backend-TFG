@@ -23,8 +23,28 @@ module.exports.deleteBusiness = function deleteBusiness (req, res, next, id) {
     });
 };
 
+module.exports.getAllBusiness = function getAllBusiness (req, res, next) {
+  Business.getAllBusiness()
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.getBusiness = function getBusiness (req, res, next, id) {
   Business.getBusiness(id)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.getBusinessBudgets = function getBusinessBudgets (req, res, next, id) {
+  Business.getBusinessBudgets(id)
     .then(function (response) {
       utils.writeJson(res, response);
     })

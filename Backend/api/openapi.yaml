@@ -1,6 +1,7 @@
 openapi: 3.0.0
 info:
   title: Backend
+  description: ""
   version: v1
 servers:
 - url: https://localhost:8080/
@@ -24,7 +25,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response'
+                $ref: '#/components/schemas/ResponseFeedback'
         "405":
           description: Invalid input
           content:
@@ -231,6 +232,45 @@ paths:
               schema:
                 $ref: '#/components/schemas/Response'
       x-swagger-router-controller: Project
+  /project/{id}/getBudget:
+    get:
+      tags:
+      - Project
+      summary: Gets the budget of a project
+      operationId: getProjectBudget
+      parameters:
+      - name: id
+        in: path
+        description: id of the project
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_3'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_3'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Project
   /budget/add:
     post:
       tags:
@@ -249,7 +289,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response'
+                $ref: '#/components/schemas/ResponseFeedback'
         "405":
           description: Invalid input
           content:
@@ -456,6 +496,45 @@ paths:
               schema:
                 $ref: '#/components/schemas/Response'
       x-swagger-router-controller: Budget
+  /budget/{id}/getBusiness:
+    get:
+      tags:
+      - Budget
+      summary: Gets the business of a budget
+      operationId: getBudgetBusiness
+      parameters:
+      - name: id
+        in: path
+        description: id of the Budget
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Budget
   /client/add:
     post:
       tags:
@@ -474,7 +553,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response'
+                $ref: '#/components/schemas/ResponseFeedback'
         "405":
           description: Invalid input
           content:
@@ -603,6 +682,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/Response'
       x-swagger-router-controller: Client
+  /clients:
+    get:
+      tags:
+      - Client
+      summary: Gets all the clients
+      operationId: getAllCLients
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_4'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_4'
+        "404":
+          description: No clients found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Client
   /client/{id}/getProjects:
     get:
       tags:
@@ -625,10 +727,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_4'
+                $ref: '#/components/schemas/inline_response_200_5'
             application/xml:
               schema:
-                $ref: '#/components/schemas/inline_response_200_4'
+                $ref: '#/components/schemas/inline_response_200_5'
         "400":
           description: Invalid id
           content:
@@ -664,10 +766,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_5'
+                $ref: '#/components/schemas/inline_response_200_6'
             application/xml:
               schema:
-                $ref: '#/components/schemas/inline_response_200_5'
+                $ref: '#/components/schemas/inline_response_200_6'
         "400":
           description: Invalid id
           content:
@@ -828,6 +930,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/Response'
       x-swagger-router-controller: Business
+  /business:
+    get:
+      tags:
+      - Business
+      summary: Gets the business
+      operationId: getAllBusiness
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_7'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_7'
+        "404":
+          description: No business found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Business
   /business/{id}/getToken:
     get:
       tags:
@@ -850,10 +975,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_6'
+                $ref: '#/components/schemas/inline_response_200_8'
             application/xml:
               schema:
-                $ref: '#/components/schemas/inline_response_200_6'
+                $ref: '#/components/schemas/inline_response_200_8'
         "400":
           description: Invalid id
           content:
@@ -889,10 +1014,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_7'
+                $ref: '#/components/schemas/inline_response_200_9'
             application/xml:
               schema:
-                $ref: '#/components/schemas/inline_response_200_7'
+                $ref: '#/components/schemas/inline_response_200_9'
         "400":
           description: Invalid id
           content:
@@ -928,10 +1053,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_8'
+                $ref: '#/components/schemas/inline_response_200_4'
             application/xml:
               schema:
-                $ref: '#/components/schemas/inline_response_200_8'
+                $ref: '#/components/schemas/inline_response_200_4'
         "400":
           description: Invalid id
           content:
@@ -967,10 +1092,49 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_4'
+                $ref: '#/components/schemas/inline_response_200_5'
             application/xml:
               schema:
-                $ref: '#/components/schemas/inline_response_200_4'
+                $ref: '#/components/schemas/inline_response_200_5'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Business
+  /business/{id}/getBudgets:
+    get:
+      tags:
+      - Business
+      summary: Gets the budgets of a business
+      operationId: getBusinessBudgets
+      parameters:
+      - name: id
+        in: path
+        description: id of the business
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_10'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_10'
         "400":
           description: Invalid id
           content:
@@ -1032,10 +1196,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_6'
+                $ref: '#/components/schemas/inline_response_200_8'
             application/xml:
               schema:
-                $ref: '#/components/schemas/inline_response_200_6'
+                $ref: '#/components/schemas/inline_response_200_8'
         "400":
           description: Invalid id
           content:
@@ -1131,6 +1295,45 @@ paths:
               schema:
                 $ref: '#/components/schemas/Response'
       x-swagger-router-controller: Token
+  /token/{id}/business:
+    get:
+      tags:
+      - Token
+      summary: Gets the business of a budget
+      operationId: getTokenBusiness
+      parameters:
+      - name: id
+        in: path
+        description: id of the Token
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2'
+        "400":
+          description: Invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "404":
+          description: Id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+      x-swagger-router-controller: Token
   /style/add:
     post:
       tags:
@@ -1179,10 +1382,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_7'
+                $ref: '#/components/schemas/inline_response_200_9'
             application/xml:
               schema:
-                $ref: '#/components/schemas/inline_response_200_7'
+                $ref: '#/components/schemas/inline_response_200_9'
         "400":
           description: Invalid id
           content:
@@ -1292,11 +1495,28 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Budget'
+    AllBusiness:
+      type: array
+      items:
+        $ref: '#/components/schemas/Business'
     Response:
       type: object
       properties:
         correcto:
           type: boolean
+        error:
+          type: string
+      example:
+        correcto: true
+        error: error
+    ResponseFeedback:
+      type: object
+      properties:
+        correcto:
+          type: boolean
+        id:
+          type: integer
+          format: int64
         error:
           type: string
       example:
@@ -1308,15 +1528,22 @@ components:
         id:
           type: integer
           format: int64
+        consumption:
+          type: integer
+          format: int64
+        coordinates:
+          type: string
         date:
           type: string
         orientation:
           type: string
+        type:
+          type: string
         surface:
           type: number
-        panels:
+        nPanels:
           type: number
-        population:
+        poblation:
           type: string
         adress:
           type: string
@@ -1328,16 +1555,30 @@ components:
           format: int64
         price:
           type: number
+          format: float
+        discount:
+          type: integer
+          format: int64
+        subtotal:
+          type: number
+          format: float
         date:
           type: string
+        businessId:
+          type: integer
+          format: int64
+        clientId:
+          type: integer
+          format: int64
+        projectId:
+          type: integer
+          format: int64
     Client:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        dni:
-          type: string
         name:
           type: string
         surname:
@@ -1345,8 +1586,7 @@ components:
         email:
           type: string
         phone:
-          type: integer
-          format: int64
+          type: string
     Business:
       type: object
       properties:
@@ -1355,17 +1595,32 @@ components:
           format: int64
         name:
           type: string
-        cif:
-          type: string
         phone:
           type: integer
           format: int64
-        population:
+        poblation:
           type: string
         adress:
           type: string
         email:
           type: string
+        password:
+          type: string
+        pricePanel:
+          type: number
+          format: float
+        priceInstallation:
+          type: number
+          format: float
+        capacityPanel:
+          type: number
+          format: float
+        tokenId:
+          type: integer
+          format: int64
+        styleId:
+          type: integer
+          format: int64
     Token:
       type: object
       properties:
@@ -1374,9 +1629,9 @@ components:
           format: int64
         code:
           type: string
-        initiation:
+        dateInscription:
           type: string
-        expiration:
+        dateExpiration:
           type: string
     Style:
       type: object
@@ -1413,26 +1668,38 @@ components:
     inline_response_200_4:
       allOf:
       - properties:
+          clients:
+            $ref: '#/components/schemas/AllClients'
+      - $ref: '#/components/schemas/Response'
+    inline_response_200_5:
+      allOf:
+      - properties:
           projects:
             $ref: '#/components/schemas/AllProjects'
       - $ref: '#/components/schemas/Response'
-    inline_response_200_5:
+    inline_response_200_6:
       allOf:
       - properties:
           budgets:
             $ref: '#/components/schemas/AllBudgets'
       - $ref: '#/components/schemas/Response'
-    inline_response_200_6:
-      allOf:
-      - $ref: '#/components/schemas/Token'
-      - $ref: '#/components/schemas/Response'
     inline_response_200_7:
       allOf:
-      - $ref: '#/components/schemas/Style'
+      - properties:
+          Business:
+            $ref: '#/components/schemas/AllBusiness'
       - $ref: '#/components/schemas/Response'
     inline_response_200_8:
       allOf:
+      - $ref: '#/components/schemas/Token'
+      - $ref: '#/components/schemas/Response'
+    inline_response_200_9:
+      allOf:
+      - $ref: '#/components/schemas/Style'
+      - $ref: '#/components/schemas/Response'
+    inline_response_200_10:
+      allOf:
       - properties:
-          clients:
-            $ref: '#/components/schemas/AllClients'
+          projects:
+            $ref: '#/components/schemas/AllBudgets'
       - $ref: '#/components/schemas/Response'

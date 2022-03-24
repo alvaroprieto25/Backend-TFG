@@ -23,6 +23,7 @@ const con = require('../index');
       else{
         res['application/json'] = {
           "correcto" : true,
+          "id": result.insertId,
           "error" : "Inserted"
         };
       }
@@ -81,6 +82,62 @@ const con = require('../index');
 
 
 /**
+ * Gets all the clients
+ *
+ * returns inline_response_200_4
+ **/
+exports.getAllCLients = function() {
+  return new Promise(function(resolve, reject) {
+    var res = {};
+    var aux = [];
+    var sql = "SELECT * FROM client";
+  
+    con.query(sql, async function (err, result) {
+      if(result.length == 0){
+        res['application/json'] = {
+          "correcto" : false,
+          "error" : "Clients not found"
+        };
+      }
+      else if (err) {
+        res['application/json'] = {
+          "correcto" : false,
+          "error" : err
+        };
+      }
+      else{
+        result.forEach(element =>{
+          aux.push({
+            "id": result[0].id,
+            "name": result[0].name,
+            "surname": result[0].surname,
+            "email": result[0].email,
+            "phone": result[0].phone,
+            "correcto" : true,
+            "error" : ""
+          });
+        });
+
+        await sleep(1000);
+        res['application/json'] = {
+          "clients" : aux,
+          "correcto" : true,
+          "error" : ""
+        };
+      }
+
+      if (Object.keys(res).length > 0) {
+        resolve(res[Object.keys(res)[0]]);
+      } else {
+        resolve();
+      }
+
+    });
+  });
+}
+
+
+/**
  * Gets a Client from db
  *
  * id Long id of the Client
@@ -107,7 +164,6 @@ const con = require('../index');
       else{
         res['application/json'] = {
           "id": result[0].id,
-          "dni": result[0].dni,
           "name": result[0].name,
           "surname": result[0].surname,
           "email": result[0].email,
@@ -128,14 +184,13 @@ const con = require('../index');
 }
 
 
-
 /**
  * Gets all the budgets of a client
  *
  * id Long id of the Client
  * returns inline_response_200_5
  **/
-exports.getClientBudgets = async function(id) {
+ exports.getClientBudgets = async function(id) {
   return new Promise(async function(resolve, reject) {
     var res = {};
     var sql = "SELECT * FROM budget WHERE clientId = '" + id + "'";
@@ -159,6 +214,8 @@ exports.getClientBudgets = async function(id) {
           aux.push(res['application/json'] = {
             "id": result[0].id,
             "price": result[0].price,
+            "discount": result[0].discount,
+            "subtotal": result[0].subtotal,
             "date": result[0].date,
             "businessId": result[0].businessId,
             "clientId": result[0].clientId,
@@ -185,12 +242,6 @@ exports.getClientBudgets = async function(id) {
   });
 }
 
-function sleep(ms) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}
-
 
 
 /**
@@ -208,7 +259,7 @@ exports.getClientProjects = function(id) {
       if(result.length == 0){
         res['application/json'] = {
           "correcto" : false,
-          "error" : "client not found"
+          "error" : "client budget's not found"
         };
       }
       else if (err) {
@@ -225,7 +276,7 @@ exports.getClientProjects = function(id) {
             if(result2.length == 0){
               res['application/json'] = {
                 "correcto" : false,
-                "error" : "project not found"
+                "error" : "no project's found"
               };
             }
             else if (err) {
@@ -237,10 +288,13 @@ exports.getClientProjects = function(id) {
             else{
               aux.push(res['application/json'] = {
                 "id": result2[0].id,
-                "nPanels": result2[0].nPanels,
-                "dateInscription": result2[0].dateInscription,
-                "orientation": result2[0].orientation,
+                "consumption": result2[0].consumption,
+                "coordinates": result2[0].coordinates,
                 "surface": result2[0].surface,
+                "orientation": result2[0].orientation,
+                "type": result2[0].type,
+                "nPanels": result2[0].nPanels,
+                "date": result2[0].dateInscription,
                 "poblation": result2[0].poblation,
                 "adress": result2[0].adress,
                 "correcto" : true,
@@ -312,3 +366,8 @@ exports.getClientProjects = function(id) {
   });
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
