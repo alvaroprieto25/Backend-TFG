@@ -114,7 +114,7 @@ const con = require('../index');
           "orientation": result[0].orientation,
           "type": result[0].type,
           "nPanels": result[0].nPanels,
-          "date": result[0].dateInscription,
+          "date": result[0].date,
           "poblation": result[0].poblation,
           "adress": result[0].adress,
           "correcto" : true,

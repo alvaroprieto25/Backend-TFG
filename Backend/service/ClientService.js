@@ -305,7 +305,7 @@ exports.getClientProjects = function(id) {
         });
         await sleep(1000);
         res['application/json'] = {
-          "clients" : aux,
+          "projects" : aux,
           "correcto" : true,
           "error" : ""
         };

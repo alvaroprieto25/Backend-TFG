@@ -7,6 +7,54 @@ servers:
 - url: https://localhost:8080/
   description: SwaggerHub API Auto Mocking
 paths:
+  /login:
+    post:
+      summary: Login
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseLogin'
+        "405":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseLogin'
+      x-swagger-router-controller: Default
+  /register:
+    post:
+      summary: Register
+      operationId: Register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Business'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseLogin'
+        "405":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseLogin'
+      x-swagger-router-controller: Default
   /project/add:
     post:
       tags:
@@ -1522,6 +1570,19 @@ components:
       example:
         correcto: true
         error: error
+    ResponseLogin:
+      type: object
+      properties:
+        correcto:
+          type: boolean
+        error:
+          type: string
+        token:
+          type: string
+      example:
+        correcto: true
+        error: error
+        token: token
     Project:
       type: object
       properties:
@@ -1648,6 +1709,13 @@ components:
         terciary:
           type: string
         font:
+          type: string
+    Login:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
           type: string
     inline_response_200:
       allOf:
